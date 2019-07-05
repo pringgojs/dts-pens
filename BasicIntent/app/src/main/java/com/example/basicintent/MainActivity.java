@@ -60,4 +60,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         startActivity(pindahIntent);
 
     }
+
+    public void pindahActivity3(View view) {
+        Intent pindahIntent = new Intent(MainActivity.this, ThreeActivity.class);
+        startActivity(pindahIntent);
+    }
 }
