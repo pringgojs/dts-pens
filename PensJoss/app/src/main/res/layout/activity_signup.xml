@@ -23,7 +23,7 @@
             android:orientation="vertical">
 
             <EditText
-                android:id="@+id/editText"
+                android:id="@+id/edFullname"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -32,7 +32,7 @@
                 android:inputType="textPersonName" />
 
             <EditText
-                android:id="@+id/editText2"
+                android:id="@+id/edEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -41,7 +41,7 @@
                 android:inputType="textEmailAddress" />
 
             <EditText
-                android:id="@+id/editText3"
+                android:id="@+id/edPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -50,7 +50,7 @@
                 android:inputType="textPassword" />
 
             <EditText
-                android:id="@+id/editText4"
+                android:id="@+id/edRepassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -59,7 +59,7 @@
                 android:inputType="textPassword" />
 
             <EditText
-                android:id="@+id/editText5"
+                android:id="@+id/edPhone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -68,7 +68,7 @@
                 android:inputType="phone" />
 
             <EditText
-                android:id="@+id/editText6"
+                android:id="@+id/edBirthday"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -89,14 +89,14 @@
                     android:text="Gender" />
 
                 <RadioButton
-                    android:id="@+id/radioButton"
+                    android:id="@+id/rdMale"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Male" />
 
                 <RadioButton
-                    android:id="@+id/radioButton2"
+                    android:id="@+id/rdFamale"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -112,5 +112,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:background="@color/colorPrimary"
+        android:onClick="signUp"
         android:text="SIGN UP" />
 </LinearLayout>
