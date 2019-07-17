@@ -9,9 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ListNegaraActivity"></activity>
-        <activity android:name=".KalkulatorActivity" />
-        <activity android:name=".InputNamaActivity" />
+        <activity android:name=".ListNegaraActivity" android:label="@string/daftar_negara"></activity>
+        <activity android:name=".KalkulatorActivity" android:label="@string/kalkulator"/>
+        <activity android:name=".InputNamaActivity" android:label="@string/input_nama"/>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
