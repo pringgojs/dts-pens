@@ -10,6 +10,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.sax.EndElementListener;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -48,6 +49,8 @@ public class ExternalStorageActivity extends AppCompatActivity implements View.O
         btnDelete.setOnClickListener(this);
         btnRead.setOnClickListener(this);
         btnCreate.setOnClickListener(this);
+
+        txtBaca.setMovementMethod(new ScrollingMovementMethod());
 
         readFile();
 

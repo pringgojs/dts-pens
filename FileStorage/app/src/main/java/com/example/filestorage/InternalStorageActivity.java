@@ -3,6 +3,7 @@ package com.example.filestorage;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -38,6 +39,8 @@ public class InternalStorageActivity extends AppCompatActivity implements View.O
         btnDelete.setOnClickListener(this);
         btnRead.setOnClickListener(this);
         btnCreate.setOnClickListener(this);
+
+        txtBaca.setMovementMethod(new ScrollingMovementMethod());
 
         readFile();
     }
