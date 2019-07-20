@@ -78,11 +78,17 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Map<String, Object> data = (Map<String, Object>) adapterView.getAdapter().getItem(i);
-                tampilkanDialogKonfirmasiLogout(data.get("name").toString());
+                tampilkanDialogKonfirmasiHapus(data.get("name").toString());
                 return true;
             }
         });
 
+    }
+
+    @Override
+    public boolean onSupportNavigateUp(){
+        finish();
+        return true;
     }
 
     @Override
@@ -95,14 +101,29 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_logout:
-                tampilkanDialogKonfirmasiLogout(item.toString());
+                tampilkanDialogKonfirmasiLogout();
                 break;
         }
 
         return super.onOptionsItemSelected(item);
     }
 
-    private void tampilkanDialogKonfirmasiLogout(final String filename) {
+    private void tampilkanDialogKonfirmasiLogout() {
+        new AlertDialog.Builder(this).setTitle("Keluar")
+                .setMessage("Anda yakin ingin keluar?")
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        hapusFile();
+                        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                }).setNegativeButton(android.R.string.no, null).show();
+    }
+
+    private void tampilkanDialogKonfirmasiHapus(final String filename) {
         new AlertDialog.Builder(this).setTitle("Hapus catatan ini ?")
                 .setMessage("Anda yakin ingin menghapus catatan ini " + filename + "?")
                 .setIcon(android.R.drawable.ic_dialog_alert)

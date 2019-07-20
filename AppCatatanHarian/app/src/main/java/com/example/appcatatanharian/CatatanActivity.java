@@ -87,6 +87,12 @@ public class CatatanActivity extends AppCompatActivity implements View.OnClickLi
         }
     }
 
+    @Override
+    public boolean onSupportNavigateUp(){
+        finish();
+        return true;
+    }
+
     private void bacaFile() {
         String path = Environment.getExternalStorageDirectory().toString() + "/kominfo.proyek1";
         Log.d("tag","path catatan : "+path);

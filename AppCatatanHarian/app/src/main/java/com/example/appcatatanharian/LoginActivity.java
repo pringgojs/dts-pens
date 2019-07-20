@@ -47,9 +47,26 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }
     }
 
+    private boolean isValidation() {
+        if (edUsername.getText().toString().trim().equals("") ||
+                edPassword.getText().toString().trim().equals("")
+        ) {
+            return false;
+        }
+
+        return true;
+    }
+
     private void login() {
+        if (!isValidation()) {
+            Toast.makeText(this, "Semua inputan harus terisi!", Toast.LENGTH_LONG).show();
+
+            return;
+        }
+
         File adcard = getFilesDir();
         File file = new File(adcard, edUsername.getText().toString());
+
 
         if (file.exists()) {
             StringBuilder text = new StringBuilder();
