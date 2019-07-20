@@ -13,6 +13,7 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -61,6 +62,27 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(MainActivity.this, CatatanActivity.class);
+                Map<String, Object> data = (Map<String, Object>) adapterView.getAdapter().getItem(i);
+                intent.putExtra("filename", data.get("name").toString());
+                Toast.makeText(MainActivity.this, "You clicked "+ data.get("name"), Toast.LENGTH_LONG);
+                startActivity(intent);
+            }
+        });
+
+        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Map<String, Object> data = (Map<String, Object>) adapterView.getAdapter().getItem(i);
+                tampilkanDialogKonfirmasiLogout(data.get("name").toString());
+                return true;
+            }
+        });
+
     }
 
     @Override
@@ -90,6 +112,7 @@ public class MainActivity extends AppCompatActivity {
                         hapusFile(filename);
                     }
                 }).setNegativeButton(android.R.string.no, null).show();
+        Toast.makeText(this, "Data berhasil dihapus", Toast.LENGTH_LONG);
 
     }
 
@@ -117,18 +140,22 @@ public class MainActivity extends AppCompatActivity {
             if (periksaIzinPenyimpanan()) {
                 mengambilListFilePadaFolder();
             }
+        }else{
+            mengambilListFilePadaFolder();
+
         }
     }
 
     private void mengambilListFilePadaFolder() {
-        String path = Environment.getExternalStorageDirectory().toString()+"/kominfo.proyek1";
+        String path = Environment.getExternalStorageDirectory().toString() + "/kominfo.proyek1";
         File directory = new File(path);
+        Log.d("tag", "mengambilListFilePadaFolder path : "+path);
 
         if (directory.exists()) {
             File[] files = directory.listFiles();
             String[] filenames = new String[files.length];
             String[] dateCreated = new String[files.length];
-            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd MMM YYYY HH:mm:ss");
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd MMM yyyy HH:mm:ss");
             ArrayList<Map<String, Object>> itemDataList = new ArrayList<Map<String, Object>>();
 
             for (int i = 0; i < files.length; i++) {
@@ -140,6 +167,7 @@ public class MainActivity extends AppCompatActivity {
                 listItemMap.put("name", filenames[i]);
                 listItemMap.put("date", dateCreated[i]);
                 itemDataList.add(listItemMap);
+                Log.d("tag", "2");
             }
 
             SimpleAdapter simpleAdapter = new SimpleAdapter(this,
@@ -147,7 +175,11 @@ public class MainActivity extends AppCompatActivity {
                     new String[] {"name", "date"}, new int[] {android.R.id.text1, android.R.id.text2});
             listView.setAdapter(simpleAdapter);
             simpleAdapter.notifyDataSetChanged();
+            Log.d("tag", "3");
 
+
+        } else {
+            Log.d("tag", "4");
         }
     }
 

@@ -89,6 +89,7 @@ public class CatatanActivity extends AppCompatActivity implements View.OnClickLi
 
     private void bacaFile() {
         String path = Environment.getExternalStorageDirectory().toString() + "/kominfo.proyek1";
+        Log.d("tag","path catatan : "+path);
         File file = new File(path, edFileNama.getText().toString());
         if (file.exists()) {
             StringBuilder text = new StringBuilder();
@@ -174,6 +175,9 @@ public class CatatanActivity extends AppCompatActivity implements View.OnClickLi
         Log.d("simpan", "4");
 
         String path = Environment.getExternalStorageDirectory().toString() + "/kominfo.proyek1";
+
+        Log.d("tag","buatDanUbah catatan : "+path);
+
         File parent = new File(path);
         if (parent.exists()) {
             File file = new File(path, edFileNama.getText().toString());
@@ -196,6 +200,8 @@ public class CatatanActivity extends AppCompatActivity implements View.OnClickLi
             } catch (IOException e) {
                 e.printStackTrace();
             }
+            onBackPressed();
+
         } else {
             Log.d("simpan", "7");
 
