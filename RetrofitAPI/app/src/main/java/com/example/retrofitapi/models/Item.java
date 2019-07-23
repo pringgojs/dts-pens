@@ -5,13 +5,13 @@ import android.os.Parcelable;
 
 public class Item implements Parcelable {
     private int id;
-    private String nama;
+    private String name;
     private String brand;
     private Integer price;
 
     public Item(int id, String nama, String brand, Integer price) {
         this.id = id;
-        this.nama = nama;
+        this.name = nama;
         this.brand = brand;
         this.price = price;
     }
@@ -20,7 +20,7 @@ public class Item implements Parcelable {
     public String toString() {
         return "Item{" +
                 "id=" + id +
-                ", nama='" + nama + '\'' +
+                ", nama='" + name + '\'' +
                 ", brand='" + brand + '\'' +
                 ", price=" + price +
                 '}';
@@ -35,11 +35,11 @@ public class Item implements Parcelable {
     }
 
     public String getNama() {
-        return nama;
+        return name;
     }
 
     public void setNama(String nama) {
-        this.nama = nama;
+        this.name = nama;
     }
 
     public String getBrand() {
@@ -67,14 +67,14 @@ public class Item implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(this.id);
-        dest.writeString(this.nama);
+        dest.writeString(this.name);
         dest.writeString(this.brand);
         dest.writeValue(this.price);
     }
 
     protected Item(Parcel in) {
         this.id = in.readInt();
-        this.nama = in.readString();
+        this.name = in.readString();
         this.brand = in.readString();
         this.price = (Integer) in.readValue(Integer.class.getClassLoader());
     }
