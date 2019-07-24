@@ -1,6 +1,7 @@
 package com.example.retrofitapi.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.retrofitapi.AddAndUpdateActivity;
 import com.example.retrofitapi.MainActivity;
 import com.example.retrofitapi.R;
 import com.example.retrofitapi.models.Item;
@@ -34,15 +36,26 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ItemViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ItemViewHolder holder, final int position) {
         holder.tvName.setText(listItem.get(position).getNama());
         holder.tvBrand.setText(listItem.get(position).getBrand());
-        holder.tvPrice.setText("" + listItem.get(position).getPrice());
+        holder.tvPrice.setText("Rp. " + listItem.get(position).getPrice());
 
         holder.cvItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Toast.makeText(MainActivity, "Sudah", Toast.LENGTH_LONG).show();
+                Toast.makeText(context, "Name : " + listItem.get(position).getNama(), Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(context, AddAndUpdateActivity.class);
+                intent.putExtra("position",position);
+                intent.putExtra("item",listItem.get(position));
+                context.startActivity(intent);
+            }
+        });
+
+        holder.cvItem.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                return true;
             }
         });
     }

@@ -9,6 +9,9 @@ public class Item implements Parcelable {
     private String brand;
     private Integer price;
 
+    public Item() {
+    }
+
     public Item(int id, String nama, String brand, Integer price) {
         this.id = id;
         this.name = nama;

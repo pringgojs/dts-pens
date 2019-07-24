@@ -12,14 +12,13 @@ import retrofit2.http.Path;
 public interface APIService {
 
     @POST("/{token}/item/create")
-
-    @FormUrlEncoded
-    Call<Result> create (
+        @FormUrlEncoded
+            Call<Result> create(
             @Path("token") String token,
-            @Path("name") String name,
+            @Field("name") String name,
             @Field("brand") String brand,
             @Field("price") Integer price
-    );
+        );
 
     @POST("/{token}/item/{id}/update")
         @FormUrlEncoded
